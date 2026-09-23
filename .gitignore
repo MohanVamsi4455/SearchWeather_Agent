@@ -2,6 +2,7 @@
 .env
 .env copy
 *.env.local
+.streamlit/secrets.toml
 
 # Virtual environment
 ai_agent_env/
