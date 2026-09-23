@@ -78,6 +78,9 @@ def build_agent_executor():
         groq_api_key=os.getenv("GROQ_API_KEY"),
         model="qwen/qwen3.8-27b",
         temperature=0.1,
+        # Groq's on-demand tier caps this model at 1000 output tokens/minute;
+        # without a cap, requests can be estimated above that and get rate-limited.
+        max_tokens=512,
     )
 
     prompt = PromptTemplate.from_template(REACT_PROMPT_TEMPLATE)
