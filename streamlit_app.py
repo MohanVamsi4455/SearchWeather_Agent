@@ -6,9 +6,32 @@ import streamlit as st
 from dotenv import load_dotenv
 from langchain.agents import AgentExecutor, create_react_agent
 from langchain_community.tools.tavily_search import TavilySearchResults
+from langchain_core.prompts import PromptTemplate
 from langchain_core.tools import tool
 from langchain_groq import ChatGroq
-from langsmith import Client
+
+# Same "ReAct" template as the "hwchase17/react" LangChain hub prompt, inlined
+# so deployment doesn't depend on LangSmith's public-prompt-pull safety gate
+# (langsmith now requires dangerously_pull_public_prompt=True for hub pulls).
+REACT_PROMPT_TEMPLATE = """Answer the following questions as best you can. You have access to the following tools:
+
+{tools}
+
+Use the following format:
+
+Question: the input question you must answer
+Thought: you should always think about what to do
+Action: the action to take, should be one of [{tool_names}]
+Action Input: the input to the action
+Observation: the result of the action
+... (this Thought/Action/Action Input/Observation can repeat N times)
+Thought: I now know the final answer
+Final Answer: the final answer to the original input question
+
+Begin!
+
+Question: {input}
+Thought:{agent_scratchpad}"""
 
 # Load GROQ_API_KEY, TAVILY_API_KEY, WEATHER_STACK_API_KEY, etc. from .env
 load_dotenv()
@@ -57,10 +80,7 @@ def build_agent_executor():
         temperature=0.1,
     )
 
-    # Pulls the public "ReAct" prompt template (Thought/Action/Observation format)
-    # from the LangChain hub; works without a LangSmith API key for public prompts.
-    client = Client()
-    prompt = client.pull_prompt("hwchase17/react")
+    prompt = PromptTemplate.from_template(REACT_PROMPT_TEMPLATE)
 
     # create_react_agent needs a plain chat model here, not one wrapped with
     # with_structured_output(), since the ReAct loop passes a `stop` sequence
