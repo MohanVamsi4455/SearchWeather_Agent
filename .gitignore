@@ -1,0 +1,18 @@
+# Secrets
+.env
+.env copy
+*.env.local
+
+# Virtual environment
+ai_agent_env/
+
+# Python
+__pycache__/
+*.pyc
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

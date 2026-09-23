@@ -1,0 +1,17 @@
+ID                                       Owner           Context    Modalities                    RPM    RPD      TPM      TPD      ASH    ASD
+--------------------------------------------------------------------------------------------------------------------------------------------
+allam-2-7b                               SDAIA           4096       text -> text                  -      -        -        -        -      -
+canopylabs/orpheus-arabic-saudi          Canopy Labs     4000       text -> speech                10     100      1.2K     3.6K     -      -
+canopylabs/orpheus-v1-english            Canopy Labs     4000       text -> speech                10     100      1.2K     3.6K     -      -
+groq/compound                            Groq            131072     text -> text                  30     250      70K      -        -      -
+groq/compound-mini                       Groq            131072     text -> text                  30     250      70K      -        -      -
+meta-llama/llama-prompt-guard-2-22m      Meta            512        text -> text                  30     14.4K    15K      500K     -      -
+meta-llama/llama-prompt-guard-2-86m      Meta            512        text -> text                  30     14.4K    15K      500K     -      -
+openai/gpt-oss-120b                      OpenAI          131072     text -> text                  30     1K       8K       200K     -      -
+openai/gpt-oss-20b                       OpenAI          131072     text -> text                  30     1K       8K       200K     -      -
+openai/gpt-oss-safeguard-20b             OpenAI          131072     text -> text                  30     1K       8K       200K     -      -
+qwen/qwen3.6-27b                         Alibaba Cloud   131072     text/image -> text             30     1K       8K       200K     -      -
+qwen/qwen3.8-27b                         Alibaba Cloud   131042     text/image -> text             30     1K       8K       200K     -      -
+whisper-large-v3                         OpenAI          448        audio -> transcription         20     2K       -        -        7.2K   28.8K
+whisper-large-v3-turbo                   OpenAI          448        audio -> transcription         20     2K       -        -        7.2K   28.8K
+deepseek.v3.2
